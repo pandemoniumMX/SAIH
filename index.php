@@ -169,7 +169,7 @@ include"assets\query/sql_connect.php";
               <div class="form-group has-default bmd-form-group">
                 <label for="exampleInput1" class="bmd-label-floating">Búsqueda nombre o código</label>
                 <select class="form-control form-control-sm" textalign="center"  required name="tv_venta" id="tv_venta">
-                  <option value="" ></option>
+                  <option value="puto" >puto</option>
                 <?php
                   $test="SELECT * FROM abonos where dom_colonia ='Los Arcos';";
                   $ejec7 = sqlsrv_query($conn, $test);
@@ -178,7 +178,7 @@ include"assets\query/sql_connect.php";
                 <?php echo '<option value="'.$fila["AbonoId"].'">'.$fila["AbonoId"].'</option>'; ?>
                 <?php } ?>  
                 </select>
-                          
+
                 </div>
             <div class="col-lg-2 col-sm-2">
               <div class="form-group bmd-form-group">
