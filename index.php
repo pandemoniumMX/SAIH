@@ -165,27 +165,38 @@ include"assets\query/sql_connect.php";
         <div class="card">
           <h3> Datos generales del producto </h3>
           <div class="row">
+
+          <div class="col-lg-2 col-sm-2">
+              <div class="form-group has-default bmd-form-group">
+                <input type="text" class="form-control" id="buscadornom" name="buscadornom" >
+
+            </div>
+            </div>
+
             <div class="col-lg-2 col-sm-2">
               <div class="form-group has-default bmd-form-group">
-                <label for="exampleInput1" class="bmd-label-floating">Búsqueda nombre o código</label>
+                <label for="exampleInput1" class="bmd-label-floating">Búsqueda por código</label>
+                
                 <select class="form-control form-control-sm" textalign="center"  required name="tv_venta" id="tv_venta">
-                  <option value="puto" >puto</option>
+                  <option value="" ></option>
                 <?php
-                  $test="SELECT * FROM abonos where dom_colonia ='Los Arcos';";
-                  $ejec7 = sqlsrv_query($conn, $test);
+                  $prodid="SELECT ProductID from Products where estatus ='A'";
+                  $ejec7 = sqlsrv_query($conn, $prodid);
 
                 while($fila=sqlsrv_fetch_array($ejec7)){?>
-                <?php echo '<option value="'.$fila["AbonoId"].'">'.$fila["AbonoId"].'</option>'; ?>
+                <?php echo '<option value="'.$fila["ProductID"].'">'.$fila["ProductID"].'</option>'; ?>
                 <?php } ?>  
                 </select>
+</div>
+            </div>
 
-                </div>
             <div class="col-lg-2 col-sm-2">
               <div class="form-group bmd-form-group">
                 <label for="exampleInput1" class="bmd-label-floating">Búsqueda productos deshabilitados</label>
                 <input type="email" class="form-control" id="exampleInput1">
               </div>
             </div>
+
             <div class="col-lg-2 col-sm-2">
             <div class="form-group bmd-form-group">
               <label for="exampleInput1" class="bmd-label-floating">Código interno</label>
@@ -496,6 +507,7 @@ include"assets\query/sql_connect.php";
      
   
   <!--   Core JS Files   -->
+  <link rel=”stylesheet” href=”//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css”>
   <script src="assets/js/core/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap-material-design.min.js"></script>
@@ -538,7 +550,21 @@ include"assets\query/sql_connect.php";
   <script src="assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="assets/demo/demo.js"></script>
- 
+
+  <script>
+$(function() {
+    $("#buscadornom").autocomplete({
+        source: "productsbuscadorid.php",
+        minLenght:1,
+        select: function( event, ui ) {
+            event.preventDefault();
+            $("#buscadornom").val(ui.item.id);
+        }
+    });
+});
+</script>
+
+
   <footer class="footer">
         <div class="container-fluid">
           <nav class="float-left">
