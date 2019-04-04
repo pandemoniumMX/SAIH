@@ -20,6 +20,9 @@ include"assets\query/sql_connect.php";
   <link href="assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
 <body class="">
@@ -168,14 +171,14 @@ include"assets\query/sql_connect.php";
 
           <div class="col-lg-2 col-sm-2">
               <div class="form-group has-default bmd-form-group">
-                <input type="text" class="form-control" id="buscadornom" name="buscadornom" >
+                <input type="text" class="form-control" id="buscadornom" name="buscadornom">
 
             </div>
             </div>
 
             <div class="col-lg-2 col-sm-2">
               <div class="form-group has-default bmd-form-group">
-                <label for="exampleInput1" class="bmd-label-floating">Búsqueda por código</label>
+                <label for="exampleInput1" class="bmd-label-floating"></label>
                 
                 <select class="form-control form-control-sm" textalign="center"  required name="tv_venta" id="tv_venta">
                   <option value="" ></option>
@@ -192,7 +195,7 @@ include"assets\query/sql_connect.php";
 
             <div class="col-lg-2 col-sm-2">
               <div class="form-group bmd-form-group">
-                <label for="exampleInput1" class="bmd-label-floating">Búsqueda productos deshabilitados</label>
+                <label for="exampleInput1" class="bmd-label-floating">Búsqueda deshabilitados</label>
                 <input type="email" class="form-control" id="exampleInput1">
               </div>
             </div>
@@ -507,8 +510,9 @@ include"assets\query/sql_connect.php";
      
   
   <!--   Core JS Files   -->
-  <link rel=”stylesheet” href=”//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css”>
-  <script src="assets/js/core/jquery.min.js"></script>
+  <!-- jQuery UI 
+   
+  <script src="assets/js/core/jquery.min.js"></script>-->
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap-material-design.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
@@ -524,7 +528,10 @@ include"assets\query/sql_connect.php";
   <script src="assets/js/plugins/bootstrap-selectpicker.js"></script>
   <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
   <script src="assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
-  <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
+  <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  
+    <script src="assets/js/plugins/jquery.dataTables.min.js"></script>
+
+  -->
   <script src="assets/js/plugins/jquery.dataTables.min.js"></script>
   <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
   <script src="assets/js/plugins/bootstrap-tagsinput.js"></script>
@@ -552,17 +559,22 @@ include"assets\query/sql_connect.php";
   <script src="assets/demo/demo.js"></script>
 
   <script>
-$(function() {
     $("#buscadornom").autocomplete({
-        source: "productsbuscadorid.php",
-        minLenght:1,
-        select: function( event, ui ) {
-            event.preventDefault();
-            $("#buscadornom").val(ui.item.id);
-        }
+    source: function( request, response ) {
+      $.ajax({
+      url: "probusid.php",
+      dataType: "jsonp",
+      data: {
+    q: request.term
+      },
+      success: function( data ) {
+      response( data );
+      }
     });
-});
-</script>
+    },
+    minLength:1
+      });
+    </script>
 
 
   <footer class="footer">
