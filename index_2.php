@@ -14,17 +14,10 @@ include"assets\query/sql_connect.php";
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  <!-- CSS Files -->
-  <link href="assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="assets/demo/demo.css" rel="stylesheet" />
+
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <script src="assets\js\plugins/autocomplete-0.3.0.js"></script>
-
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
 <body class="">
@@ -565,7 +558,7 @@ include"assets\query/sql_connect.php";
     source: function( request, response ) {
       $.ajax({
       url: "probusid.php",
-      dataType: "json",
+      dataType: "jsonp",
       data: {
     q: request.term
       },
@@ -573,8 +566,7 @@ include"assets\query/sql_connect.php";
       response( data );
       }
     });
-    },
-    minLength:1
+    }
       });
     </script>
 
