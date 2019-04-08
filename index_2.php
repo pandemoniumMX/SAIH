@@ -175,16 +175,8 @@ include"assets\query/sql_connect.php";
               <div class="form-group has-default bmd-form-group">
                 <label for="exampleInput1" class="bmd-label-floating"></label>
                 
-                <select class="form-control form-control-sm" textalign="center"  required name="tv_venta" id="tv_venta">
-                  <option value="" ></option>
-                <?php
-                  $prodid="SELECT ProductID from Products where estatus ='A'";
-                  $ejec7 = sqlsrv_query($conn, $prodid);
+                <input type="text" class="form-control" id="buscadorcod" name="buscadorcod">
 
-                while($fila=sqlsrv_fetch_array($ejec7)){?>
-                <?php echo '<option value="'.$fila["ProductID"].'">'.$fila["ProductID"].'</option>'; ?>
-                <?php } ?>  
-                </select>
 </div>
             </div>
 
@@ -554,20 +546,36 @@ include"assets\query/sql_connect.php";
   <script src="assets/demo/demo.js"></script>
 
   <script>
+    $(function() {
     $("#buscadornom").autocomplete({
-    source: function( request, response ) {
-      $.ajax({
-      url: "probusid.php",
-      dataType: "jsonp",
-      data: {
-    q: request.term
-      },
-      success: function( data ) {
-      response( data );
-      }
+        source: "probusid.php",
+        select: function( event, ui ) {
+            event.preventDefault();
+            $("#buscadorcod").val(ui.item.id);
+
+        }
     });
-    }
-      });
+});
+    </script>
+
+<script>
+    $(function() {
+    $("#buscadornom").on('change', function(){
+        
+        $.ajax({
+          type:'POST',
+          url:'get_products.php',
+          data:{id:id},
+          dataType:'json',
+          })
+          .done(function(data){
+            $("buscadorcod").val(data.data.id);
+          })
+          .fail(function(){
+            alert('Meco')
+          })
+    });
+});
     </script>
 
 

@@ -2,11 +2,11 @@
 require"sql_connect.php";
 
 
-$sql="SELECT COUNT(dom_municipio) AS Totalmunicipios FROM abonos;";
+$sql="SELECT ProductID,ProductName from Products where ProductName like '%jeringa%'  and estatus ='A'";
 $res=sqlsrv_query($conn,$sql);
 
 while ($fila = sqlsrv_fetch_array($res)) {
-    echo $fila['Totalmunicipios'];
+    echo $fila['ProductName'];
 
 	}
 

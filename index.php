@@ -20,10 +20,11 @@ include"assets\query/sql_connect.php";
   <link href="assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="assets\js\plugins/autocomplete-0.3.0.js"></script>
+
 
 </head>
 
@@ -559,13 +560,25 @@ include"assets\query/sql_connect.php";
   <script src="assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="assets/demo/demo.js"></script>
-
+<!-- 
+  <script>
+  $(function() {
+    $("#buscadornom").autocomplete({
+        source: "probusid.php",
+        select: function( event, ui ) {
+            event.preventDefault();
+            $("#buscadornom").val(ui.item.auto);
+        }
+    });
+});  
+  </script>
+ -->
   <script>
     $("#buscadornom").autocomplete({
     source: function( request, response ) {
       $.ajax({
-      url: "probusid.php",
-      dataType: "json",
+      url: "probusid_1.php",
+      dataType: "jsonp",
       data: {
     q: request.term
       },
@@ -574,7 +587,7 @@ include"assets\query/sql_connect.php";
       }
     });
     },
-    minLength:1
+    minLength:0
       });
     </script>
 
