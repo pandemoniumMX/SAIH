@@ -171,6 +171,9 @@ include"assets\query/sql_connect.php";
       <div class="content">
         <div class="container-fluid">
         <div class="card">
+
+              <!-- Inicio de form -->
+
         <form target="_blank" action="pdf_products.php" method="post" name="data" content="text/html; charset=utf-8" >
           <h3> Datos generales del producto </h3>
           <div class="row">
@@ -188,13 +191,13 @@ include"assets\query/sql_connect.php";
                 
                 <input type="text" class="form-control"placeholder="Busqueda por código" id="buscadorcod" name="buscadorcod">
 
-</div>
+            </div>
             </div>
 
             <div class="col-lg-2 col-sm-2">
               <div class="form-group bmd-form-group">
                 <label for="exampleInput1" class="bmd-label">Buscar por categoría</label>
-                <select class="form-control form-control-sm" textalign="center"  required name="categoria" id="categoria">
+                <select class="form-control form-control-sm" textalign="center"  required id="categoria" name="categoria" >
                   <option value="" ></option>
                 <?php
                   $prodid="SELECT CategoryID,CategoryName from Categorias where estatus ='A'";
@@ -220,14 +223,21 @@ include"assets\query/sql_connect.php";
             
             
           </div>    
-          <Button type="submit" class= "btn btn-info btn-fill btn-wd">Generar reporte PDF</Button>
+          <a href="javascript:enviar_formulario()">Generar Reporte PDF</a> 
 
-          </form>
-          
+          </form>                       
+          <!-- Fin de form -->
+
         </div><!-- End container -->
 
       </div>
      
+      <script> 
+      function enviar_formulario(){ 
+        document.data.submit() 
+      } 
+      </script>
+
       <script>
         $('#datepicker1').datetimepicker({ 
           format: 'yyyy-mm-dd HH:mm:ss',
