@@ -25,7 +25,8 @@ include"assets\query/sql_connect.php";
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="assets\js\plugins/autocomplete-0.3.0.js"></script>
   <script src="https://unpkg.com/popper.js"></script>
-
+  <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
 
 </head>
@@ -35,7 +36,6 @@ include"assets\query/sql_connect.php";
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
         Tip 2: you can also add an image using data-image tag
     -->
       <div class="logo">
@@ -192,309 +192,32 @@ include"assets\query/sql_connect.php";
 
             <div class="col-lg-2 col-sm-2">
               <div class="form-group bmd-form-group">
-                <label for="exampleInput1" class="bmd-label-floating">Búsqueda deshabilitados</label>
-                <input type="text" class="form-control" id="txtcod" name="txtcod">
+                <label for="exampleInput1" class="bmd-label">Buscar por categoría</label>
+                <select class="form-control form-control-sm" textalign="center"  required name="tv_venta" id="tv_venta">
+                  <option value="" ></option>
+                <?php
+                  $prodid="SELECT CategoryID,CategoryName from Categorias where estatus ='A'";
+                  $ejec7 = sqlsrv_query($conn, $prodid);
+                while($fila=sqlsrv_fetch_array($ejec7)){?>
+                <?php echo '<option value="'.$fila["CategoryID"].'">'.$fila["CategoryName"].'</option>'; ?>
+                <?php } ?>  
+                </select>
               </div>
             </div>
 
             <div class="col-lg-2 col-sm-2">
             <div class="form-group bmd-form-group">
-              <label for="exampleInput1" class="bmd-label-floating">Código interno</label>
-              <input type="text" class="form-control"  id="prueba" name="prueba">
-              </div>
+            <label class="control-label" for="regular1">Fecha inicio</label>
+              <input type="text" class="form-control" id="datepicker1">
             </div>
-            <div class="col-lg-2 col-sm-2">
-            <div class="form-group bmd-form-group">
-              <label for="exampleInput1" class="bmd-label-floating">Código de barras</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
             </div>
-            <div class="col-lg-2 col-sm-2">
-            <div class="form-group bmd-form-group">
-              <label for="exampleInput1" class="bmd-label-floating">Producto en inglés</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
+            
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+            <label class="control-label" for="regular1">Fecha final</label>
+            <input type="text" class="form-control" id="datepicker2" >
             </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-              <label for="exampleInput1" class="bmd-label-floating">CPT CODE</label>
-              <input type="email" class="form-control" id="exampleInput1">
-              </div>
-              </div>
-
-              <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-              <label for="exampleInput1" class="bmd-label-floating">Dosis</label>
-              <input type="email" class="form-control" id="exampleInput1">
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-              <label for="exampleInput1" class="bmd-label-floating">Sal genérica</label> 
-              <input type="email" class="form-control" id="exampleInput1">
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-              <label for="exampleInput1" class="bmd-label-floating">Presentación de producto</label> 
-              <input type="email" class="form-control" id="exampleInput1">
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-              <label for="exampleInput1" class="bmd-label-floating"># Piezas</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-              <label for="exampleInput1" class="bmd-label-floating"># Cantidad</label>
-              <input type="email" class="form-control" id="exampleInput1">
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-              <label for="exampleInput1" class="bmd-label-floating"># Unidad de medida</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Especificaiones de producto</label>
-              <input type="email" class="form-control" id="exampleInput1">
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Concepto facturación</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Unidad de medida SAT</label>
-
-              <input type="email" class="form-control" id="exampleInput1">
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Catengoría</label>
-              <input type="email" class="form-control" id="exampleInput1">
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Marca</label>
-              <input type="email" class="form-control" id="exampleInput1">
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Laboratorio medicamentos</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Nombre general</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Divición productos SAT</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Grupo productos SAT</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Productos SAT</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
            
-
-          </div>
-
-          <h3> Nombre compuesto </h3>
-          <div class="row">
-
-          <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Última compra</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Última venta</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Productos SAT</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Costo Base P/Venta</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Último precio compra</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-               
-             <label for="exampleInput1" class="bmd-label-floating">Aplica IVA</label>
-
-              <input type="checkbox" class="form-control" id="exampleInput1" placeholder="Aplica IVA">
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Política de precios</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-            </div>
-
-
-
-            <h3> Precios </h3>
-            <div class="row">
-          <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Precio 0</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Precio 1</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Precio 2</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Precio 3/label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Precio 4</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Precio 5</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
             
-            </div>
-
-            <h3> Datos máximos y minimos hospital </h3>
-            <div class="row">
-          <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Almacen</label>
-             
-             <select class="form-control">
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="fiat">Fiat</option>
-              <option value="audi">Audi</option>
-            </select>              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Precio 1</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Precio 2</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Precio 3/label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Precio 4</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            <div class="col-lg-2 col-sm-2">
-             <div class="form-group bmd-form-group">
-             <label for="exampleInput1" class="bmd-label-floating">Precio 5</label>
-              <input type="email" class="form-control" id="exampleInput1" >
-              </div>
-            </div>
-
-            
-            </div>
 
 
             
@@ -505,7 +228,19 @@ include"assets\query/sql_connect.php";
 
       </div>
      
-  
+      <script>
+        $('#datepicker1').datetimepicker({ 
+          format: 'yyyy-mm-dd HH:mm:ss',
+
+          footer: true, modal: true });
+      </script>
+
+<script>
+        $('#datepicker2').datetimepicker({ 
+          format: 'yyyy-mm-dd HH:mm:ss',
+
+          footer: true, modal: true });
+      </script>
   <!--   Core JS Files   -->
   <!-- jQuery UI 
    
@@ -527,7 +262,6 @@ include"assets\query/sql_connect.php";
   <script src="assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
   <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  
     <script src="assets/js/plugins/jquery.dataTables.min.js"></script>
-
   -->
   <script src="assets/js/plugins/jquery.dataTables.min.js"></script>
   <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
@@ -563,19 +297,15 @@ include"assets\query/sql_connect.php";
             event.preventDefault();
            // $("#buscadorcod ").val(ui.item.id);
             $("#buscadornom").val(ui.item.value );
-
-
         }
     });
     });
     </script>
 
 <script>
-
     $(function() {
     $("#buscadorcod").on('change', function(){
       var id = $(this).val();
-
         $.ajax({
           type:'POST',
           url:'get_products.php',
@@ -583,39 +313,8 @@ include"assets\query/sql_connect.php";
           dataType:'json',
           })
           .done(function(data){
-            $("#txtcod").val(data.data.prod);
-            $("#prueba").val(data.data.name);
-            $("#txtcod").val(data.data.prod);
-            $("#prueba").val(data.data.name);
-            $("#txtcod").val(data.data.prod);
-            $("#prueba").val(data.data.name);
-            $("#txtcod").val(data.data.prod);
-            $("#prueba").val(data.data.name);
-            $("#txtcod").val(data.data.prod);
-            $("#prueba").val(data.data.name);
-            $("#txtcod").val(data.data.prod);
-            $("#prueba").val(data.data.name);
-            $("#txtcod").val(data.data.prod);
-            $("#prueba").val(data.data.name);
-            $("#txtcod").val(data.data.prod);
-            $("#prueba").val(data.data.name);
-            $("#txtcod").val(data.data.prod);
-            $("#prueba").val(data.data.name);
-            $("#txtcod").val(data.data.prod);
-            $("#prueba").val(data.data.name);
-            $("#txtcod").val(data.data.prod);
-            $("#prueba").val(data.data.name);
-            $("#txtcod").val(data.data.prod);
-            $("#prueba").val(data.data.name);
-            $("#txtcod").val(data.data.prod);
-            $("#prueba").val(data.data.name);
-            $("#txtcod").val(data.data.prod);
-            $("#prueba").val(data.data.name);
-            $("#txtcod").val(data.data.prod);
-            $("#prueba").val(data.data.name);
-            $("#txtcod").val(data.data.prod);
-            $("#prueba").val(data.data.name);
-
+           // $("#txtcod").val(data.data.prod);
+          
           })
           .fail(function(){
             alert('Meco')
