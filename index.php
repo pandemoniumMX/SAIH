@@ -21,7 +21,7 @@ include"assets\query/sql_connect.php";
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="assets\js\plugins/autocomplete-0.3.0.js"></script>
   <script src="https://unpkg.com/popper.js"></script>
@@ -200,7 +200,7 @@ include"assets\query/sql_connect.php";
             <div class="col-lg-2 col-sm-2">
             <div class="form-group bmd-form-group">
               <label for="exampleInput1" class="bmd-label-floating">Código interno</label>
-              <input type="email" class="form-control"  id="exampleInput1">
+              <input type="text" class="form-control"  id="prueba" name="prueba">
               </div>
             </div>
             <div class="col-lg-2 col-sm-2">
@@ -583,7 +583,39 @@ include"assets\query/sql_connect.php";
           dataType:'json',
           })
           .done(function(data){
-            $("txtcod").val(data.data.prod);
+            $("#txtcod").val(data.data.prod);
+            $("#prueba").val(data.data.name);
+            $("#txtcod").val(data.data.prod);
+            $("#prueba").val(data.data.name);
+            $("#txtcod").val(data.data.prod);
+            $("#prueba").val(data.data.name);
+            $("#txtcod").val(data.data.prod);
+            $("#prueba").val(data.data.name);
+            $("#txtcod").val(data.data.prod);
+            $("#prueba").val(data.data.name);
+            $("#txtcod").val(data.data.prod);
+            $("#prueba").val(data.data.name);
+            $("#txtcod").val(data.data.prod);
+            $("#prueba").val(data.data.name);
+            $("#txtcod").val(data.data.prod);
+            $("#prueba").val(data.data.name);
+            $("#txtcod").val(data.data.prod);
+            $("#prueba").val(data.data.name);
+            $("#txtcod").val(data.data.prod);
+            $("#prueba").val(data.data.name);
+            $("#txtcod").val(data.data.prod);
+            $("#prueba").val(data.data.name);
+            $("#txtcod").val(data.data.prod);
+            $("#prueba").val(data.data.name);
+            $("#txtcod").val(data.data.prod);
+            $("#prueba").val(data.data.name);
+            $("#txtcod").val(data.data.prod);
+            $("#prueba").val(data.data.name);
+            $("#txtcod").val(data.data.prod);
+            $("#prueba").val(data.data.name);
+            $("#txtcod").val(data.data.prod);
+            $("#prueba").val(data.data.name);
+
           })
           .fail(function(){
             alert('Meco')
