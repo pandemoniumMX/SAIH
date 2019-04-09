@@ -171,7 +171,7 @@ include"assets\query/sql_connect.php";
       <div class="content">
         <div class="container-fluid">
         <div class="card">
-        <form action="modificar_empresa_updateex_fn.php" method="post" name="data" content="text/html; charset=utf-8" >
+        <form target="_blank" action="pdf_products.php" method="post" name="data" content="text/html; charset=utf-8" >
           <h3> Datos generales del producto </h3>
           <div class="row">
 
@@ -209,13 +209,13 @@ include"assets\query/sql_connect.php";
             <div class="col-lg-2 col-sm-2">
             <div class="form-group bmd-form-group">
             <label class="control-label" for="regular1">Fecha inicio</label>
-              <input type="text" class="form-control" id="datepicker1">
+              <input type="text" class="form-control" id="datepicker1" name="datepicker1">
             </div>
             </div>
             
             <div class="form-group pmd-textfield pmd-textfield-floating-label">
             <label class="control-label" for="regular1">Fecha final</label>
-            <input type="text" class="form-control" id="datepicker2" >
+            <input type="text" class="form-control" id="datepicker2" name="datepicker2" >
             </div>
             
             
