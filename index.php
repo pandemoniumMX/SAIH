@@ -171,6 +171,7 @@ include"assets\query/sql_connect.php";
       <div class="content">
         <div class="container-fluid">
         <div class="card">
+        <form action="modificar_empresa_updateex_fn.php" method="post" name="data" content="text/html; charset=utf-8" >
           <h3> Datos generales del producto </h3>
           <div class="row">
 
@@ -193,7 +194,7 @@ include"assets\query/sql_connect.php";
             <div class="col-lg-2 col-sm-2">
               <div class="form-group bmd-form-group">
                 <label for="exampleInput1" class="bmd-label">Buscar por categoría</label>
-                <select class="form-control form-control-sm" textalign="center"  required name="tv_venta" id="tv_venta">
+                <select class="form-control form-control-sm" textalign="center"  required name="categoria" id="categoria">
                   <option value="" ></option>
                 <?php
                   $prodid="SELECT CategoryID,CategoryName from Categorias where estatus ='A'";
@@ -216,13 +217,12 @@ include"assets\query/sql_connect.php";
             <label class="control-label" for="regular1">Fecha final</label>
             <input type="text" class="form-control" id="datepicker2" >
             </div>
-           
             
-
-
             
           </div>    
-          
+          <Button type="submit" class= "btn btn-info btn-fill btn-wd">Generar reporte PDF</Button>
+
+          </form>
           
         </div><!-- End container -->
 
@@ -231,14 +231,16 @@ include"assets\query/sql_connect.php";
       <script>
         $('#datepicker1').datetimepicker({ 
           format: 'yyyy-mm-dd HH:mm:ss',
-
-          footer: true, modal: true });
+          language: 'es',
+          footer: true, modal: true },     
+          
+          );
       </script>
 
 <script>
         $('#datepicker2').datetimepicker({ 
           format: 'yyyy-mm-dd HH:mm:ss',
-
+          language: 'es',
           footer: true, modal: true });
       </script>
   <!--   Core JS Files   -->
