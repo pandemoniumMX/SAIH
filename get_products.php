@@ -5,15 +5,19 @@ $response = array();
 if(isset($_POST['id'])){
   $id = $_POST['id'];
 
-  $query = "SELECT * from Products where ProductID ='1' and estatus ='A'";
-  $resultado = $conn->query($query);
-  while ($row = sqlsrv_fetch_array($stmt)) {
+  $query = "SELECT * from Products where ProductID = $id and estatus ='A'";
+  $stmt = sqlsrv_query( $conn, $query);
+  
+  while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC))  {
 
-  $response['data'] = array (
-    "id"        =>  $row["ProductID"],
-
-  );
-   }
+    //array_push($response,array("prod" => $row["ProductID"]));
+    
+      $response['data'] = array (
+        "prod"        =>  $row["ProductID"],
+      
+      );
+      }
+         
    
   $response['codigo'] = 1;
   $response['msj'] = "El id se recibio ".$id;

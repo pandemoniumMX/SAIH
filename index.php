@@ -24,6 +24,8 @@ include"assets\query/sql_connect.php";
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="assets\js\plugins/autocomplete-0.3.0.js"></script>
+  <script src="https://unpkg.com/popper.js"></script>
+
 
 
 </head>
@@ -174,7 +176,7 @@ include"assets\query/sql_connect.php";
 
           <div class="col-lg-2 col-sm-2">
               <div class="form-group has-default bmd-form-group">
-                <input type="text" class="form-control" id="buscadornom" name="buscadornom">
+                <input type="text" class="form-control" placeholder="Busqueda por nombre" id="buscadornom" name="buscadornom">
 
             </div>
             </div>
@@ -183,23 +185,15 @@ include"assets\query/sql_connect.php";
               <div class="form-group has-default bmd-form-group">
                 <label for="exampleInput1" class="bmd-label-floating"></label>
                 
-                <select class="form-control form-control-sm" textalign="center"  required name="tv_venta" id="tv_venta">
-                  <option value="" ></option>
-                <?php
-                  $prodid="SELECT ProductID from Products where estatus ='A'";
-                  $ejec7 = sqlsrv_query($conn, $prodid);
+                <input type="text" class="form-control"placeholder="Busqueda por código" id="buscadorcod" name="buscadorcod">
 
-                while($fila=sqlsrv_fetch_array($ejec7)){?>
-                <?php echo '<option value="'.$fila["ProductID"].'">'.$fila["ProductID"].'</option>'; ?>
-                <?php } ?>  
-                </select>
 </div>
             </div>
 
             <div class="col-lg-2 col-sm-2">
               <div class="form-group bmd-form-group">
                 <label for="exampleInput1" class="bmd-label-floating">Búsqueda deshabilitados</label>
-                <input type="email" class="form-control" id="exampleInput1">
+                <input type="text" class="form-control" id="txtcod" name="txtcod">
               </div>
             </div>
 
@@ -560,35 +554,43 @@ include"assets\query/sql_connect.php";
   <script src="assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="assets/demo/demo.js"></script>
-<!-- 
+
   <script>
-  $(function() {
+    $(function() {
     $("#buscadornom").autocomplete({
-        source: "probusid.php",
+        source: "buscarnomfn.php",
         select: function( event, ui ) {
             event.preventDefault();
-            $("#buscadornom").val(ui.item.auto);
+           // $("#buscadorcod ").val(ui.item.id);
+            $("#buscadornom").val(ui.item.value );
+
+
         }
     });
-});  
-  </script>
- -->
-  <script>
-    $("#buscadornom").autocomplete({
-    source: function( request, response ) {
-      $.ajax({
-      url: "probusid_1.php",
-      dataType: "jsonp",
-      data: {
-    q: request.term
-      },
-      success: function( data ) {
-      response( data );
-      }
     });
-    },
-    minLength:0
-      });
+    </script>
+
+<script>
+
+    $(function() {
+    $("#buscadorcod").on('change', function(){
+      var id = $(this).val();
+
+        $.ajax({
+          type:'POST',
+          url:'get_products.php',
+          data:{id:id},
+          dataType:'json',
+          })
+          .done(function(data){
+            $("txtcod").val(data.data.prod);
+          })
+          .fail(function(){
+            alert('Meco')
+          })
+    });
+    });
+    
     </script>
 
 

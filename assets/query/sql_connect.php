@@ -1,6 +1,6 @@
 <?php
-//$serverName = "PANDEMNONIUM-PC"; //serverName\instanceName
-$serverName = "Master"; //serverName\instanceName
+$serverName = "PANDEMNONIUM-PC"; //serverName\instanceName
+//$serverName = "Master"; //serverName\instanceName
 
 
 // Puesto que no se han especificado UID ni PWD en el array  $connectionInfo,
