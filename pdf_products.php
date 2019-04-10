@@ -35,7 +35,7 @@ class PDF extends FPDF
         // Arial italic 8
         $this->SetFont('Arial','I',8);
         // Número de página
-        $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
+        $this->Cell(0,10,'Page '.$this->PageNo().'',0,0,'C');
     }
     }
 //Creación del objeto de la clase heredada
@@ -48,9 +48,9 @@ $query = "SELECT * from Products where BitCat_DiaHora between '$horastart' and '
 $stmt = sqlsrv_query( $conn, $query); 
 while( $data = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC))  {
 
-$pdf->Cell(20,5,$data['ProductID'],1,0,'C');
-$pdf->Cell(110,5,$data['NombreSimple'],1,0,'C');
-
+$pdf->Cell(10,5,$data['ProductID'],1,0,'C');
+$pdf->Cell(95,5,$data['NombreSimple'],1,0,'L');
+$pdf->Cell(20,5,$data['CPTCode'],1,0,'C');
 $pdf->Ln(); 
 }  
  

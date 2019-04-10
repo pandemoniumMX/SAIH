@@ -46,34 +46,60 @@ include"assets\query/sql_connect.php";
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-        
-        <div class="nav-item">
-          <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Admision
-          </button>
-          <div class="dropdown-menu" aria-labelledby="about-us">
-          <a class="dropdown-item" href="pacientes.php">Pacientes</a>
-        
-          </div>
-
-          </div>
-          </div>
-
-         
           <li class="nav-item  ">
+            <a class="nav-link" href="./dashboard.html">
+              <i class="material-icons">dashboard</i>
+              <p>Reporteador</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./user.html">
+              <i class="material-icons">person</i>
+              <p>Productos</p>
+            </a>
+          </li>
+          <li class="nav-item active ">
             <a class="nav-link" href="./tables.html">
               <i class="material-icons">content_paste</i>
-              <p>Almacen</p>
+              <p>Table List</p>
             </a>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="./typography.html">
               <i class="material-icons">library_books</i>
-              <p>Compras</p>
+              <p>Typography</p>
             </a>
           </li>
-          
+          <li class="nav-item ">
+            <a class="nav-link" href="./icons.html">
+              <i class="material-icons">bubble_chart</i>
+              <p>Icons</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./map.html">
+              <i class="material-icons">location_ons</i>
+              <p>Maps</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./notifications.html">
+              <i class="material-icons">notifications</i>
+              <p>Notifications</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./rtl.html">
+              <i class="material-icons">language</i>
+              <p>RTL Support</p>
+            </a>
+          </li>
+          <li class="nav-item active-pro ">
+            <a class="nav-link" href="./upgrade.html">
+              <i class="material-icons">unarchive</i>
+              <p>Upgrade to PRO</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -148,7 +174,58 @@ include"assets\query/sql_connect.php";
 
               <!-- Inicio de form -->
 
-           
+        <form target="_blank" action="pdf_products.php" method="post" name="data" content="text/html; charset=utf-8" >
+          <h3> Datos generales del producto </h3>
+          <div class="row">
+
+          <div class="col-lg-2 col-sm-2">
+              <div class="form-group has-default bmd-form-group">
+                <input type="text" class="form-control" placeholder="Busqueda por nombre" id="buscadornom" name="buscadornom">
+
+            </div>
+            </div>
+
+            <div class="col-lg-2 col-sm-2">
+              <div class="form-group has-default bmd-form-group">
+                <label for="exampleInput1" class="bmd-label-floating"></label>
+                
+                <input type="text" class="form-control"placeholder="Busqueda por código" id="buscadorcod" name="buscadorcod">
+
+            </div>
+            </div>
+
+            <div class="col-lg-2 col-sm-2">
+              <div class="form-group bmd-form-group">
+                <label for="exampleInput1" class="bmd-label">Buscar por categoría</label>
+                <select class="form-control form-control-sm" textalign="center"  required id="categoria" name="categoria" >
+                  <option value="" ></option>
+                <?php
+                  $prodid="SELECT CategoryID,CategoryName from Categorias where estatus ='A'";
+                  $ejec7 = sqlsrv_query($conn, $prodid);
+                while($fila=sqlsrv_fetch_array($ejec7)){?>
+                <?php echo '<option value="'.$fila["CategoryID"].'">'.$fila["CategoryName"].'</option>'; ?>
+                <?php } ?>  
+                </select>
+              </div>
+            </div>
+
+            <div class="col-lg-2 col-sm-2">
+            <div class="form-group bmd-form-group">
+            <label class="control-label" for="regular1">Fecha inicio</label>
+              <input type="text" class="form-control" id="datepicker1" name="datepicker1">
+            </div>
+            </div>
+            
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+            <label class="control-label" for="regular1">Fecha final</label>
+            <input type="text" class="form-control" id="datepicker2" name="datepicker2" >
+            </div>
+            
+            
+          </div>    
+          <a href="javascript:enviar_formulario()">Generar Reporte PDF</a> 
+
+          </form>                       
           <!-- Fin de form -->
 
         </div><!-- End container -->

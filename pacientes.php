@@ -53,7 +53,7 @@ include"assets\query/sql_connect.php";
           Admision
           </button>
           <div class="dropdown-menu" aria-labelledby="about-us">
-          <a class="dropdown-item" href="pacientes.php">Pacientes</a>
+          <a class="dropdown-item" href="#">Pacientes</a>
         
           </div>
 
@@ -144,11 +144,113 @@ include"assets\query/sql_connect.php";
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-        <div class="card">
+        <div class="card-body">
 
-              <!-- Inicio de form -->
 
-           
+  <div class="col-sm-12" >
+             <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                  <form id='form-id'>
+
+                    <label class="btn btn-primary"  id='watch-me'>
+                    <input name='test' type='radio' /> Reporte de pacientes
+
+                      </label>
+
+                      <label class="btn btn-light" id='see-me'>
+                      <input name='test' type='radio' /> Reportes egresos hospitalarios
+                      </label>
+
+                      <label class="btn btn-light" id='see-me2'>
+                      <input name='test' type='radio' /> Estadísticas hospital
+                    </label>
+
+                     
+
+
+                  </form>
+                </div>
+
+      <div id='show-me'>              <!-- Inicio de form -->
+
+            <div class="col-lg-2 col-sm-2">
+            <div class="form-group bmd-form-group">
+            <label class="control-label" for="regular1">Fecha inicio</label>
+              <input type="text" class="form-control" id="datepicker1" name="datepicker1">
+            </div>
+            </div>
+            
+            <div class="col-lg-2 col-sm-2">
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+            <label class="control-label" for="regular1">Fecha final</label>
+            <input type="text" class="form-control" id="datepicker2" name="datepicker2" >
+            </div>
+            </div>
+
+        <form target="_blank" action="pdf_products.php" method="post" name="data" content="text/html; charset=utf-8" >
+          <h3> Datos generales del producto </h3>
+          <div class="row">
+
+          <div class="col-lg-2 col-sm-2">
+              <div class="form-group has-default bmd-form-group">
+                <input type="text" class="form-control" placeholder="Busqueda por nombre" id="buscadornom" name="buscadornom">
+
+            </div>
+            </div>
+
+            <div class="col-lg-2 col-sm-2">
+              <div class="form-group has-default bmd-form-group">
+                <label for="exampleInput1" class="bmd-label-floating"></label>
+                
+                <input type="text" class="form-control"placeholder="Busqueda por código" id="buscadorcod" name="buscadorcod">
+
+            </div>
+            </div>
+
+            <div class="col-lg-2 col-sm-2">
+              <div class="form-group bmd-form-group">
+                <label for="exampleInput1" class="bmd-label">Buscar por categoría</label>
+                <select class="form-control form-control-sm" textalign="center"  required id="categoria" name="categoria" >
+                  <option value="" ></option>
+                <?php
+                  $prodid="SELECT CategoryID,CategoryName from Categorias where estatus ='A'";
+                  $ejec7 = sqlsrv_query($conn, $prodid);
+                while($fila=sqlsrv_fetch_array($ejec7)){?>
+                <?php echo '<option value="'.$fila["CategoryID"].'">'.$fila["CategoryName"].'</option>'; ?>
+                <?php } ?>  
+                </select>
+              </div>
+            </div>
+
+          
+
+            
+          </div>    
+          <a href="javascript:enviar_formulario()">Generar Reporte PDF</a> 
+
+          </form>  
+          <!-- Fin de form -->
+
+  </div>          <!-- Fin de show 1 -->
+
+
+
+ <div id='show-me-two' style='display:none; border:2px solid #ccc'>
+
+      <div class="col-lg-2 col-sm-2">
+            <div class="form-group bmd-form-group">
+            <label class="control-label" for="regular1">Fecha inicio</label>
+              <input type="text" class="form-control" id="datepicker3" name="datepicker3">
+            </div>
+            </div>
+            
+            <div class="col-lg-2 col-sm-2">
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+            <label class="control-label" for="regular1">Fecha final</label>
+            <input type="text" class="form-control" id="datepicker4" name="datepicker4" >
+            </div>
+            </div>
+ </div>
+
           <!-- Fin de form -->
 
         </div><!-- End container -->
@@ -170,8 +272,24 @@ include"assets\query/sql_connect.php";
           );
       </script>
 
-<script>
+      <script>
         $('#datepicker2').datetimepicker({ 
+          format: 'yyyy-mm-dd HH:mm:ss',
+          language: 'es',
+          footer: true, modal: true });
+      </script>
+
+<script>
+        $('#datepicker3').datetimepicker({ 
+          format: 'yyyy-mm-dd HH:mm:ss',
+          language: 'es',
+          footer: true, modal: true },     
+          
+          );
+      </script>
+
+      <script>
+        $('#datepicker4').datetimepicker({ 
           format: 'yyyy-mm-dd HH:mm:ss',
           language: 'es',
           footer: true, modal: true });
