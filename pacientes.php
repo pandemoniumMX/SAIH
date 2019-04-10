@@ -151,7 +151,7 @@ include"assets\query/sql_connect.php";
              <div class="btn-group btn-group-toggle" data-toggle="buttons">
                   <form id='form-id'>
 
-                    <label class="btn btn-primary"  id='watch-me'>
+                    <label class="btn btn-light"  id='watch-me'>
                     <input name='test' type='radio' /> Reporte de pacientes
 
                       </label>
@@ -171,63 +171,41 @@ include"assets\query/sql_connect.php";
                 </div>
 
       <div id='show-me'>              <!-- Inicio de form -->
+      <div class="row">
 
             <div class="col-lg-2 col-sm-2">
             <div class="form-group bmd-form-group">
-            <label class="control-label" for="regular1">Fecha inicio</label>
+            <strong class="card-title mb-3">Fecha de inicio</strong>
               <input type="text" class="form-control" id="datepicker1" name="datepicker1">
             </div>
             </div>
             
             <div class="col-lg-2 col-sm-2">
             <div class="form-group pmd-textfield pmd-textfield-floating-label">
-            <label class="control-label" for="regular1">Fecha final</label>
+            <strong class="card-title mb-3">Fecha de final</strong>
             <input type="text" class="form-control" id="datepicker2" name="datepicker2" >
             </div>
             </div>
-
-        <form target="_blank" action="pdf_products.php" method="post" name="data" content="text/html; charset=utf-8" >
-          <h3> Datos generales del producto </h3>
-          <div class="row">
-
-          <div class="col-lg-2 col-sm-2">
-              <div class="form-group has-default bmd-form-group">
-                <input type="text" class="form-control" placeholder="Busqueda por nombre" id="buscadornom" name="buscadornom">
-
-            </div>
             </div>
 
-            <div class="col-lg-2 col-sm-2">
-              <div class="form-group has-default bmd-form-group">
-                <label for="exampleInput1" class="bmd-label-floating"></label>
-                
-                <input type="text" class="form-control"placeholder="Busqueda por código" id="buscadorcod" name="buscadorcod">
+            <strong class="card-title mb-3">Ingresos Hospitalarios</strong>
+            <div class="form-group">
 
-            </div>
-            </div>
+            <?php
 
-            <div class="col-lg-2 col-sm-2">
-              <div class="form-group bmd-form-group">
-                <label for="exampleInput1" class="bmd-label">Buscar por categoría</label>
-                <select class="form-control form-control-sm" textalign="center"  required id="categoria" name="categoria" >
-                  <option value="" ></option>
-                <?php
-                  $prodid="SELECT CategoryID,CategoryName from Categorias where estatus ='A'";
-                  $ejec7 = sqlsrv_query($conn, $prodid);
-                while($fila=sqlsrv_fetch_array($ejec7)){?>
-                <?php echo '<option value="'.$fila["CategoryID"].'">'.$fila["CategoryName"].'</option>'; ?>
-                <?php } ?>  
-                </select>
+            $opciones="SELECT * from ConfiguracionReportesPacientes where visible ='True' and estatus ='A'";
+            $ejec1 = sqlsrv_query($conn, $opciones);
+            while($fila=sqlsrv_fetch_array($ejec1)){?>
+               
+                      <input name="select-item" type="checkbox"> <?php echo $fila['opciones']; ?>
+                </br>
+                   
+
+              <?php } ?>
               </div>
-            </div>
+              <Button type="submit" class= "btn btn-info btn-fill btn-wd">Generar reporte pdf</Button>
 
-          
-
-            
-          </div>    
-          <a href="javascript:enviar_formulario()">Generar Reporte PDF</a> 
-
-          </form>  
+        
           <!-- Fin de form -->
 
   </div>          <!-- Fin de show 1 -->
@@ -257,6 +235,17 @@ include"assets\query/sql_connect.php";
 
       </div>
      
+      <script> 
+      $(document).ready(function() {
+        $("input.select-item").click(function() {
+          var productID = $(this).val();
+          var checkedState = $(this).is(":checked");
+          console.log(checkedState);
+        });
+      });
+      </script>
+
+
       <script> 
       function enviar_formulario(){ 
         document.data.submit() 
